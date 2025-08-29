@@ -126,3 +126,44 @@ class CommentViewSet(viewsets.ModelViewSet):
         if user_id:
             qs = qs.filter(user_id=user_id)
         return qs
+
+
+# SignUp API
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+@api_view(['POST'])
+def signup(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    if not username or not password:
+        return Response({"error": "Username and password required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if User.objects.filter(username=username).exists():
+        return Response({"error": "Username already exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = User.objects.create_user(username=username, password=password)
+    token, _ = Token.objects.get_or_create(user=user)
+    return Response({"token": token.key, "message": "User created successfully"}, status=status.HTTP_201_CREATED)
+
+# Login API
+from django.contrib.auth import authenticate
+@api_view(['POST'])
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(username=username, password=password)
+    if not user:
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+    token, _ = Token.objects.get_or_create(user=user)
+    return Response({"token": token.key, "message": "Login successful"}, status=status.HTTP_200_OK)
+
+# Logout API
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def logout(request):
+    request.auth.delete()
+    return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
