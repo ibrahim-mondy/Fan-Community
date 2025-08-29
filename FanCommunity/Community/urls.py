@@ -20,3 +20,14 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+
+
+from rest_framework.authtoken.views import obtain_auth_token
+from .views import SignUpView, LogoutView
+
+urlpatterns = [
+    # --- Auth Routes ---
+    path('auth/signup/', SignUpView.as_view(), name='signup'),
+    path('auth/login/', obtain_auth_token, name='login'),  
+    path('auth/logout/', LogoutView.as_view(), name='logout'),
+]
