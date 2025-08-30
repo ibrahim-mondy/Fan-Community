@@ -128,15 +128,26 @@ class CommentViewSet(viewsets.ModelViewSet):
         return qs
 
 
-# SignUp API
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view
-@api_view(['POST'])
+from rest_framework.permissions import IsAuthenticated
+
+
+# SignUp API
+@api_view(['GET', 'POST'])
 def signup(request):
+    if request.method == 'GET':
+        return Response({"message": "Please use POST to create a new user"}, status=status.HTTP_200_OK)
+
+    # POST method
     username = request.data.get('username')
     password = request.data.get('password')
     if not username or not password:
-        return Response({"error": "Username and password required"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Username and password are required"}, status=status.HTTP_400_BAD_REQUEST)
 
     if User.objects.filter(username=username).exists():
         return Response({"error": "Username already exists"}, status=status.HTTP_400_BAD_REQUEST)
@@ -146,9 +157,12 @@ def signup(request):
     return Response({"token": token.key, "message": "User created successfully"}, status=status.HTTP_201_CREATED)
 
 # Login API
-from django.contrib.auth import authenticate
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def login(request):
+    if request.method == 'GET':
+        return Response({"message": "Please use POST to log in"}, status=status.HTTP_200_OK)
+
+    # POST method
     username = request.data.get('username')
     password = request.data.get('password')
     user = authenticate(username=username, password=password)
@@ -159,11 +173,12 @@ def login(request):
     return Response({"token": token.key, "message": "Login successful"}, status=status.HTTP_200_OK)
 
 # Logout API
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import permission_classes
-
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def logout(request):
+    if request.method == 'GET':
+        return Response({"message": "Please use POST to log out"}, status=status.HTTP_200_OK)
+
+    # POST method
     request.auth.delete()
     return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
