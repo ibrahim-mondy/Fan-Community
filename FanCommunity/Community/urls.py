@@ -15,11 +15,12 @@ router.register(r'posts', PostViewSet, basename='post')
 router.register(r'comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # --- Auth Routes ---
-    path('auth/signup/', signup, name='signup'),
-    path('auth/login/', login, name='login'),
-    path('auth/logout/', logout, name='logout'),
+    path('signup/', signup, name='signup'),
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
 ]
+
