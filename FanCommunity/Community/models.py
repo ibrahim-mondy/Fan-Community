@@ -20,7 +20,7 @@ class User(AbstractUser):
 
 class Movie(models.Model):
     title = models.CharField(max_length=225)
-    descripton = models.TextField()
+    description = models.TextField()
     release_date = models.DateField()
     genre = models.CharField(max_length=100)
     
