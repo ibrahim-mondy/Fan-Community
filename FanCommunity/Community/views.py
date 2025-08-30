@@ -182,3 +182,41 @@ def logout(request):
     # POST method
     request.auth.delete()
     return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
+
+# search on the movie
+
+from rest_framework import generics, filters
+from .models import Movie
+from .serializers import MovieSerializer
+
+class MovieListView(generics.ListAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'genre']
+
+
+# search on the  FootballTeam
+
+
+from .models import FootballTeam
+from .serializers import FootballTeamSerializer
+
+class TeamListView(generics.ListAPIView):
+    queryset = FootballTeam.objects.all()
+    serializer_class = FootballTeamSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'country']
+
+# search on the user
+
+from django.contrib.auth import get_user_model
+from .serializers import UserSerializer
+
+User = get_user_model()
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'email']
