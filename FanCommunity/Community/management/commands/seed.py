@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from community.models import Movie, FootballTeam
+from Community.models import Movie, FootballTeam
 
 class Command(BaseCommand):
     help = 'Seed the database with sample data'
