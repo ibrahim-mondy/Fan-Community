@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import (
@@ -15,12 +16,18 @@ router.register(r'posts', PostViewSet, basename='post')
 router.register(r'comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('admin/', admin.site.urls),
 
-    # --- Auth Routes ---
-    path('signup/', signup, name='signup'),
-    path('login/', login, name='login'),
-    path('logout/', logout, name='logout'),
+    # Authentication routes
+    path('api/auth/', include('authentication.urls')),
+
+    # Core app routes
+    path('api/movies/', include('movies.urls')),
+    path('api/football-teams/', include('football.urls')),
+    path('api/posts/', include('posts.urls')),
+    path('api/comments/', include('comments.urls')),
+    path('api/likes/', include('likes.urls')),
+    path('api/favorite-teams/', include('favorites.urls_team')),
+    path('api/favorite-movies/', include('favorites.urls_movie')),
 ]
 

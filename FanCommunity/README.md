@@ -54,3 +54,18 @@ The goal is to create a social-style platform that is simple but scalable, focus
 ```bash
 git clone https://github.com/ibrahim-mondy/Fan-Community.git
 cd Fan-Community
+
+
+# Test in video
+# signin
+# http://localhost:8000/api/auth/signup/
+{
+  "username": "ibrahim",
+  "password": "ibrahim88888"
+}
+
+# logout
+# http://localhost:8000/api/auth/logout/
+Authorization: Token abcd1234token
+
+Token 4411490afe46df610ddaa5cb9fc0b203313f14ed
