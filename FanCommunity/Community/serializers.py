@@ -23,7 +23,7 @@ class FootballTeamSerializer(serializers.ModelSerializer):
 
 # -------- Post Serializer --------
 class PostSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)  # لعرض بيانات المستخدم
+    user = UserSerializer(read_only=True)  
     class Meta:
         model = Post
         fields = ['id', 'user', 'content', 'created_at', 'category']
