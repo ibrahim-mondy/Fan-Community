@@ -17,6 +17,7 @@ router.register(r'likes', LikeViewSet, basename='like')
 router.register(r'favorite-movies', FavoriteMovieViewSet, basename='favorite-movie')
 router.register(r'favorite-teams', FavoriteTeamViewSet, basename='favorite-team')
 
+
 urlpatterns = [
     path('', include(router.urls)),
     path('auth/signup/', signup, name='signup'),
