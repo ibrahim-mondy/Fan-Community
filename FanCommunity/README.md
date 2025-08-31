@@ -59,25 +59,27 @@ cd Fan-Community
 # signin
 # http://localhost:8000/api/auth/signup/
 {
-  "username": "Ebrahim",
-  "password": "Ebrahim&88888"
+  "username": "EbrahimMondy",
+  "password": "Ibrahim&88888"
 }
 
 # Add Movies
 # http://localhost:8000/api/movies/
 {
-    "title": "Interstellar",
-    "description": "A sci-fi movie about a team of explorers traveling through a wormhole in space.",
-    "release_date": "2014-11-07",
-    "genre": "Sci-Fi/Adventure"
+    "title": "Scarface",
+    "description": "A crime film about the rise and fall of a Cuban immigrant in Miami's criminal underworld.",
+    "release_date": "1983-12-09",
+    "genre": "Crime/Drama"
 }
+
 
 # Add Teame
 # http://localhost:8000/api/teams/
 {
-    "name": "Arsenal",
-    "country": "England",
-    "founded_year": 1886
+    "name": "Barcelona",
+    "country": "Spain",
+    "founded_year": 1899
 }
+
 # logout
 # http://localhost:8000/api/auth/logout/
