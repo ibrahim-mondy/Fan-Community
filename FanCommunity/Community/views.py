@@ -8,6 +8,9 @@ from .serializers import (
     UserSerializer, MovieSerializer, FootballTeamSerializer,
     PostSerializer, CommentSerializer
 )
+from .serializers import (
+    LikeSerializer, FavoriteMovieSerializer, FavoriteTeamSerializer
+)
 
 User = get_user_model()
 
@@ -50,21 +53,17 @@ class CommentViewSet(viewsets.ModelViewSet):
 # ----------------- Like -----------------
 class LikeViewSet(viewsets.ModelViewSet):
     queryset = Like.objects.all()
-    serializer_class = serializer.ModelSerializer  
+    serializer_class = LikeSerializer
     permission_classes = [AllowAny]
 
-
-# ----------------- FavoriteMovie -----------------
 class FavoriteMovieViewSet(viewsets.ModelViewSet):
     queryset = FavoriteMovie.objects.all()
-    serializer_class = serializers.ModelSerializer
+    serializer_class = FavoriteMovieSerializer
     permission_classes = [AllowAny]
 
-
-# ----------------- FavoriteTeam -----------------
 class FavoriteTeamViewSet(viewsets.ModelViewSet):
     queryset = FavoriteTeam.objects.all()
-    serializer_class = serializers.ModelSerializer
+    serializer_class = FavoriteTeamSerializer
     permission_classes = [AllowAny]
 
 
