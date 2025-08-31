@@ -17,7 +17,6 @@ The goal is to create a social-style platform that is simple but scalable, focus
 
 <!-- - **Authentication System** -->
   - User registration and login
-  - Token-based authentication (DRF TokenAuth)
   - Role management: `Admin`, `Member`
 
 <!-- - **Movie & Football Database** -->
@@ -56,16 +55,29 @@ git clone https://github.com/ibrahim-mondy/Fan-Community.git
 cd Fan-Community
 
 
-# Test in video
+# User Endpoints
 # signin
 # http://localhost:8000/api/auth/signup/
 {
-  "username": "ibrahim",
-  "password": "ibrahim88888"
+  "username": "Ebrahim",
+  "password": "Ebrahim&88888"
 }
 
+# Add Movies
+# http://localhost:8000/api/movies/
+{
+    "title": "Interstellar",
+    "description": "A sci-fi movie about a team of explorers traveling through a wormhole in space.",
+    "release_date": "2014-11-07",
+    "genre": "Sci-Fi/Adventure"
+}
+
+# Add Teame
+# http://localhost:8000/api/teams/
+{
+    "name": "Arsenal",
+    "country": "England",
+    "founded_year": 1886
+}
 # logout
 # http://localhost:8000/api/auth/logout/
-Authorization: Token abcd1234token
-
-Token:d24eb387bfcb1c93dc4ac1ec5096f93c66251b6e
