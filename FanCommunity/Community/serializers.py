@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Movie, FootballTeam, Post, Comment, Like
+from .models import Movie, FootballTeam, Post, Comment
 
 # -------- User Serializer --------
 class UserSerializer(serializers.ModelSerializer):
@@ -36,8 +36,3 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'post', 'user', 'content', 'created_at']
 
-
-class LikeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Like
-        fields = '__all__'

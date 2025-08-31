@@ -126,15 +126,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         if user_id:
             qs = qs.filter(user_id=user_id)
         return qs
-    
-from rest_framework import viewsets
-from .models import Like
-from .serializers import LikeSerializer
-
-class LikeViewSet(viewsets.ModelViewSet):
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
-
 
 
 from rest_framework.decorators import api_view, permission_classes
