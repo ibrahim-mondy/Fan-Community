@@ -221,3 +221,31 @@ class UserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['username', 'email']
+
+from rest_framework import viewsets, permissions
+from .models import Like, FavoriteMovie, FavoriteTeam
+from .serializers import LikeSerializer, FavoriteMovieSerializer, FavoriteTeamSerializer
+
+class LikeViewSet(viewsets.ModelViewSet):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class FavoriteMovieViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteMovie.objects.all()
+    serializer_class = FavoriteMovieSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class FavoriteTeamViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteTeam.objects.all()
+    serializer_class = FavoriteTeamSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
