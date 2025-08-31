@@ -36,3 +36,23 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'post', 'user', 'content', 'created_at']
+
+from .models import Like, FavoriteMovie, FavoriteTeam
+
+class LikeSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = Like
+        fields = ['id', 'post', 'user']
+
+class FavoriteMovieSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = FavoriteMovie
+        fields = ['id', 'user', 'movie']
+
+class FavoriteTeamSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = FavoriteTeam
+        fields = ['id', 'user', 'team']
