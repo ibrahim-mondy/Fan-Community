@@ -68,4 +68,4 @@ cd Fan-Community
 # http://localhost:8000/api/auth/logout/
 Authorization: Token abcd1234token
 
-Token 4411490afe46df610ddaa5cb9fc0b203313f14ed
+Token:d24eb387bfcb1c93dc4ac1ec5096f93c66251b6e
